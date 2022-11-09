@@ -12,15 +12,29 @@ namespace kursTech
 {
     public partial class Form1 : Form
     {
-        
-        Emitter emitter = new Emitter();
+
+        Emitter emitter;
 
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            
+            this.emitter = new Emitter
+            {
+                Direction = 0,
+                Spreading = 10,
+                SpeedMin = 10,
+                SpeedMax = 10,
+                ColorFrom = Color.Gold,
+                ColorTo = Color.FromArgb(0, Color.Red),
+                ParticlesPerTick = 10,
+                X = 50,
+                Y = 50
+
+            };
+
+
         }
 
         
