@@ -12,6 +12,8 @@ namespace kursTech
 {
     public partial class Form1 : Form
     {
+        public int MousePositionX = 0;
+        public int MousePositionY = 0;
 
         Emitter emitter;
 
@@ -33,6 +35,8 @@ namespace kursTech
                 Y = 50
 
             };
+            
+            
 
 
         }
@@ -42,6 +46,8 @@ namespace kursTech
         private void timer1_Tick(object sender, EventArgs e)
         {
             emitter.UpdateState();
+            
+          
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
                 g.Clear(Color.Black);
@@ -50,6 +56,12 @@ namespace kursTech
             }
             picDisplay.Invalidate();
 
+        }
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            MousePositionX = e.X;
+            MousePositionY = e.Y;
         }
     }
 }

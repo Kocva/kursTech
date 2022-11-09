@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static kursTech.Particle;
@@ -10,6 +11,9 @@ namespace kursTech
 {
     internal class Emitter
     {
+        
+        public int antiRadius = 80;
+
         public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
         public int Y; // соответствующая координата Y 
         public int Direction = 0; // вектор направления в градусах куда сыпет эмиттер
@@ -74,11 +78,18 @@ namespace kursTech
                 }
                 else
                 {
+
+                    
+                   
+                    
+                    
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
+
+
                 }
 
             }
@@ -97,6 +108,17 @@ namespace kursTech
             {
                 particle.Draw(g);
             }
+            //foreach (var point in antiPoints)
+            //{
+                
+            //    g.DrawEllipse(
+             //       new Pen(Color.Red),
+             //       point.X - antiRadius / 2,
+             //       point.Y - antiRadius / 2,
+             //       antiRadius,
+             //       antiRadius
+              //  );
+            //}
         }
 
     }
