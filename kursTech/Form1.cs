@@ -4,14 +4,18 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static kursTech.IImpactPoint;
 
 namespace kursTech
 {
     public partial class Form1 : Form
     {
+        AntiPoint point1;
+
         public int MousePositionX = 0;
         public int MousePositionY = 0;
 
@@ -24,8 +28,8 @@ namespace kursTech
 
             this.emitter = new Emitter
             {
-                Direction = 0,
-                Spreading = 10,
+                Direction = 28,
+                Spreading = 3,
                 SpeedMin = 10,
                 SpeedMax = 10,
                 ColorFrom = Color.Gold,
@@ -35,8 +39,14 @@ namespace kursTech
                 Y = 50
 
             };
-            
-            
+            point1 = new AntiPoint
+            {
+                X = 590,
+                Y = 200,
+            };
+
+            emitter.impactPoints.Add(point1);
+
 
 
         }
@@ -60,8 +70,13 @@ namespace kursTech
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
+            
+            
             MousePositionX = e.X;
             MousePositionY = e.Y;
+
+            point1.X = e.X;
+            point1.Y = e.Y;
         }
     }
 }

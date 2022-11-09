@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace kursTech
 {
-    internal class Particle
+    public class Particle
     {
         public int Radius;
         public float X;

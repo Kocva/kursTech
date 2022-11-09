@@ -11,8 +11,8 @@ namespace kursTech
 {
     internal class Emitter
     {
-        
-        public int antiRadius = 80;
+        public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
+
 
         public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
         public int Y; // соответствующая координата Y 
@@ -78,11 +78,15 @@ namespace kursTech
                 }
                 else
                 {
+                    foreach (var point in impactPoints)
+                    {
+                        point.ImpactParticle(particle);
+                    }
 
-                    
-                   
-                    
-                    
+
+
+
+
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
@@ -108,17 +112,11 @@ namespace kursTech
             {
                 particle.Draw(g);
             }
-            //foreach (var point in antiPoints)
-            //{
-                
-            //    g.DrawEllipse(
-             //       new Pen(Color.Red),
-             //       point.X - antiRadius / 2,
-             //       point.Y - antiRadius / 2,
-             //       antiRadius,
-             //       antiRadius
-              //  );
-            //}
+            foreach (var point in impactPoints)
+            {
+
+                point.Render(g);
+            }
         }
 
     }
