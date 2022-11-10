@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace kursTech
 {
+
     public abstract class IImpactPoint
     {
+        public int Power = 80; // сила притяжения
         public float X;
         public float Y;
         public float antiRadius = 80;
@@ -19,16 +21,16 @@ namespace kursTech
         {
             g.DrawEllipse(
                     new Pen(Color.Red),
-                    X - antiRadius / 2,
-                    Y - antiRadius / 2,
-                    antiRadius,
-                    antiRadius
+                    X - Power / 2,
+               Y - Power / 2,
+               Power,
+               Power
                 );
         }
 
         public class AntiPoint : IImpactPoint
         {
-            public int Power = 150; // сила притяжения
+            
 
             
             public override void ImpactParticle(Particle particle)
@@ -36,12 +38,13 @@ namespace kursTech
                 float gX = X - particle.X;
                 float gY = Y - particle.Y;
                 double r = Math.Sqrt(gX * gX + gY * gY);
-                if (r + particle.Radius < Power / 2)
+                
+                if (r + particle.Radius < Power / 2 + particle.Radius*2)
                 {
                     float r2 = (float)Math.Max(100, gX * gX + gY * gY);
 
-                    particle.SpeedX -= gX * Power / r2;
-                    particle.SpeedY -= gY * Power / r2;
+                    particle.SpeedX -= gX * (Power+370) / r2;
+                    particle.SpeedY -= gY * (Power+370) / r2;
                 }
                     
             }

@@ -28,10 +28,10 @@ namespace kursTech
 
             this.emitter = new Emitter
             {
-                Direction = 28,
-                Spreading = 3,
-                SpeedMin = 10,
-                SpeedMax = 10,
+                Direction = 0,
+                Spreading = 360,
+                SpeedMin = 4,
+                SpeedMax = 4,
                 ColorFrom = Color.Gold,
                 ColorTo = Color.FromArgb(0, Color.Red),
                 ParticlesPerTick = 10,
