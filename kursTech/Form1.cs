@@ -15,9 +15,9 @@ namespace kursTech
 {
     public partial class Form1 : Form
     {
-        MouseAntiPoint point1;
-        AntiPoint point2;
-        AntiPoint point3;
+
+        CounterPoint point1;
+        CounterPoint point2;
 
         public int MousePositionX = 0;
         public int MousePositionY = 0;
@@ -42,29 +42,13 @@ namespace kursTech
                 Y = 50
 
             };
-            point1 = new MouseAntiPoint
-            {
-                X = 590,
-                Y = 200,
-            };
 
-            emitter.mousePoint = point1;
 
-            point2 = new AntiPoint
-            {
-                X = 450,
-                Y = 150,
-            };
+            
 
-            emitter.impactPoints.Add(point2);
+            
 
-            point3 = new AntiPoint
-            {
-                X = 260,
-                Y = 240,
-            };
-
-            emitter.impactPoints.Add(point3);
+            
 
 
         }
@@ -86,29 +70,27 @@ namespace kursTech
 
         }
 
-        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
-        {
-            
-            
-            MousePositionX = e.X;
-            MousePositionY = e.Y;
-
-            point1.X = e.X;
-            point1.Y = e.Y;
-        }
 
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
             if (e.Delta > 0)
             {
-                IImpactPoint.MousePower += 2;
-                IImpactPoint.MousePowerPlus += 20;
+                
             }
             if (e.Delta < 0)
             {
-                IImpactPoint.MousePower -= 2;
-                IImpactPoint.MousePowerPlus -= 20;
+                
             }
+        }
+
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            emitter.impactPoints.Add(new CounterPoint
+            {
+                X = 450,
+                Y = 150,
+            }
+            );
         }
     }
 }

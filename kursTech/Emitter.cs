@@ -12,7 +12,6 @@ namespace kursTech
     internal class Emitter
     {
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
-        public IImpactPoint mousePoint;
 
         public int X;
         public int Y;
@@ -83,7 +82,6 @@ namespace kursTech
                     {
                         point.ImpactParticle(particle);
                     }
-                    mousePoint.ImpactParticle(particle);
 
 
 
@@ -118,7 +116,6 @@ namespace kursTech
 
                 point.Render(g);
             }
-            mousePoint.RenderMouse(g);
         }
 
     }

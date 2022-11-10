@@ -11,12 +11,10 @@ namespace kursTech
 
     public abstract class IImpactPoint
     {
-        public static int Power = 80;
-        public static int MousePower = 80;
-        public static int MousePowerPlus = 500;
+        public static int radius = 80;
+        public int counter;
         public float X;
         public float Y;
-        public float antiRadius = 80;
 
         public abstract void ImpactParticle(Particle particle);
 
@@ -24,25 +22,21 @@ namespace kursTech
         {
             g.DrawEllipse(
                     new Pen(Color.Red),
-                    X - Power / 2,
-               Y - Power / 2,
-               Power,
-               Power
+                    X - radius / 2,
+               Y - radius / 2,
+               radius,
+               radius
                 );
+            g.DrawString(
+            $"кол-во: {counter}", // надпись, можно перенос строки вставлять (если вы Катя, то может не работать и надо использовать \r\n)
+            new Font("Verdana", 10), // шрифт и его размер
+            new SolidBrush(Color.White), // цвет шрифта
+            X, // расположение в пространстве
+            Y
+        );
         }
 
-        public void RenderMouse(Graphics g)
-        {
-            g.DrawEllipse(
-                    new Pen(Color.Red),
-                    X - MousePower / 2,
-               Y - MousePower / 2,
-               MousePower,
-               MousePower
-                );
-        }
-
-        public class AntiPoint : IImpactPoint
+        public class CounterPoint : IImpactPoint
         {
             
 
@@ -53,43 +47,16 @@ namespace kursTech
                 float gY = Y - particle.Y;
                 double r = Math.Sqrt(gX * gX + gY * gY);
                 
-                if (r + particle.Radius < Power / 2 + particle.Radius*2)
+                if (r + particle.Radius < radius / 2 + particle.Radius*2)
                 {
-                    float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-                    particle.SpeedX = 0;
-                    particle.SpeedY = 0;
-                    particle.SpeedX -= gX * (Power + 500) / r2;
-                    particle.SpeedY -= gY * (Power + 500) / r2;
+                    particle.Life = 0;
+                    counter++;
+                    
                 }
                     
             }
 
             
-        }
-
-        public class MouseAntiPoint : IImpactPoint
-        {
-
-
-
-            public override void ImpactParticle(Particle particle)
-            {
-                float gX = X - particle.X;
-                float gY = Y - particle.Y;
-                double r = Math.Sqrt(gX * gX + gY * gY);
-
-                if (r + particle.Radius < MousePower / 2 + particle.Radius * 2)
-                {
-                    float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-                    particle.SpeedX = 0;
-                    particle.SpeedY = 0;
-                    particle.SpeedX -= gX * (MousePower + MousePowerPlus) / r2;
-                    particle.SpeedY -= gY * (MousePower + MousePowerPlus) / r2;
-                }
-
-            }
-
-
         }
 
     }
