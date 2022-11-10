@@ -17,22 +17,44 @@ namespace kursTech
         public float Y;
 
         public abstract void ImpactParticle(Particle particle);
-
+        public Color FromColor;
+        public Color ToColor;
+        public Color ColorFrom = Color.Gold;
+        public Color ColorTo = Color.FromArgb(0, Color.Red);
+        private int k;
+        public int alpha;
         public void Render(Graphics g)
         {
-            g.DrawEllipse(
-                    new Pen(Color.Red),
-                    X - radius / 2,
+
+            if (counter < 2540)
+            {
+                k = counter / 10;
+                alpha = (int)(k * 255);
+            }
+            else if (counter >= 2540 && counter < 25400)
+            {
+                k = counter / 100;
+                alpha = (int)(k * 255);
+            }
+            else k = 255;
+
+
+        var color = Color.FromArgb(k, Color.Green);
+
+            var b = new SolidBrush(color);
+
+            g.FillEllipse(b, X - radius / 2,
                Y - radius / 2,
                radius,
-               radius
-                );
+               radius);
+            b.Dispose();
+
             g.DrawString(
-            $"кол-во: {counter}", // надпись, можно перенос строки вставлять (если вы Катя, то может не работать и надо использовать \r\n)
-            new Font("Verdana", 10), // шрифт и его размер
-            new SolidBrush(Color.White), // цвет шрифта
-            X, // расположение в пространстве
-            Y
+            $"кол-во: {counter}",
+            new Font("Verdana", 10),
+            new SolidBrush(Color.White),
+            X-40,
+            Y-10
         );
         }
 
