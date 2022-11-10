@@ -73,12 +73,22 @@ namespace kursTech
         private int countOfClicks = 0;
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            emitter.impactPoints.Add(new CounterPoint
+            if (e.Button == MouseButtons.Left)
             {
-                X = e.X,
-                Y = e.Y,
-            }
+                emitter.impactPoints.Add(new CounterPoint
+                {
+                    X = e.X,
+                    Y = e.Y,
+                }
             );
+                countOfClicks++;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                emitter.impactPoints.RemoveAt(countOfClicks-1);
+                countOfClicks--;
+            }
+            
 
         }
 
