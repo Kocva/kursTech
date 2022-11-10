@@ -54,7 +54,7 @@ namespace kursTech
         public virtual Particle CreateParticle()
         {
             var particle = new ParticleColorful();
-            particle.FromColor = ColorFrom;
+            particle.FromColor = ColorTo;
             particle.ToColor = ColorTo;
 
             return particle;
