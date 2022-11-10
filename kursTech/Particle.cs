@@ -60,7 +60,7 @@ namespace kursTech
 
             public override void Draw(Graphics g)
             {
-                float k = Math.Min(1f, Life / 100);
+                float k = Math.Min(1f, Life / Emitter.LifeMax);
 
                 var color = MixColor(ToColor, FromColor, k);
                 var b = new SolidBrush(color);
