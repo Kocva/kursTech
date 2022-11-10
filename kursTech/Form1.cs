@@ -16,8 +16,7 @@ namespace kursTech
     public partial class Form1 : Form
     {
 
-        CounterPoint point1;
-        CounterPoint point2;
+       
 
         public int MousePositionX = 0;
         public int MousePositionY = 0;
@@ -28,7 +27,6 @@ namespace kursTech
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-            picDisplay.MouseWheel += picDisplay_MouseWheel;
             this.emitter = new Emitter
             {
                 Direction = 45,
@@ -71,26 +69,25 @@ namespace kursTech
         }
 
 
-        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
-        {
-            if (e.Delta > 0)
-            {
-                
-            }
-            if (e.Delta < 0)
-            {
-                
-            }
-        }
 
+        private int countOfClicks = 0;
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
             emitter.impactPoints.Add(new CounterPoint
             {
-                X = 450,
-                Y = 150,
+                X = e.X,
+                Y = e.Y,
             }
             );
+
+        }
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            MousePositionX = e.X;
+            MousePositionY = e.Y;
+
+            
         }
     }
 }
