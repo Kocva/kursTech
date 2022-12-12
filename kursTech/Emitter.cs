@@ -9,7 +9,7 @@ using static kursTech.Particle;
 
 namespace kursTech
 {
-    internal class Emitter
+    public class Emitter
     {
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 

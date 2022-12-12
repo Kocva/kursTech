@@ -15,39 +15,78 @@ namespace kursTech
 {
     public partial class Form1 : Form
     {
-
-       
-
+        List<Emitter> emitters = new List<Emitter>();
         public int MousePositionX = 0;
         public int MousePositionY = 0;
+        Emitter emitter1;
+        Emitter emitter2;
+        Emitter emitter3;
+        Emitter emitter4;
 
-        Emitter emitter;
+        
+        
 
         public Form1()
         {
+
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-            this.emitter = new Emitter
+            emitter1 = new Emitter
             {
-                Direction = 45,
+                Direction = 30,
                 Spreading = 10,
-                SpeedMin = 5,
-                SpeedMax = 5,
+                SpeedMin = 20,
+                SpeedMax = 21,
                 ColorFrom = Color.Gold,
                 ColorTo = Color.FromArgb(0, Color.Red),
                 ParticlesPerTick = 10,
-                X = 200,
+                X = 100,
+                Y = 50
+        };
+
+            emitter2 = new Emitter
+            {
+                Direction = 160,
+                Spreading = 10,
+                SpeedMin = 20,
+                SpeedMax = 21,
+                ColorFrom = Color.Red,
+                ColorTo = Color.FromArgb(0, Color.Purple),
+                ParticlesPerTick = 10,
+                X = 1200,
                 Y = 50
 
             };
+            emitter3 = new Emitter
+            {
+                Direction = 45,
+                Spreading = 10,
+                SpeedMin = 24,
+                SpeedMax = 25,
+                ColorFrom = Color.Blue,
+                ColorTo = Color.FromArgb(0, Color.White),
+                ParticlesPerTick = 10,
+                X = 100,
+                Y = 500
 
+            };
+            emitter4 = new Emitter
+            {
+                Direction = 135,
+                Spreading = 10,
+                SpeedMin = 24,
+                SpeedMax = 25,
+                ColorFrom = Color.Black,
+                ColorTo = Color.FromArgb(0, Color.White),
+                ParticlesPerTick = 10,
+                X = 1200,
+                Y = 500
 
-            
-
-            
-
-            
-
+            };
+            emitters.Add(emitter1);
+            emitters.Add(emitter2);
+            emitters.Add(emitter3);
+            emitters.Add(emitter4);
 
         }
 
@@ -55,16 +94,23 @@ namespace kursTech
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            emitter.UpdateState();
-            
-          
-            using (var g = Graphics.FromImage(picDisplay.Image))
+
+            foreach (var emitter in emitters)
             {
-                g.Clear(Color.Black);
-                emitter.Render(g);
-                
+                emitter.UpdateState();
             }
-            picDisplay.Invalidate();
+
+                using (var g = Graphics.FromImage(picDisplay.Image))
+                {
+                    g.Clear(Color.Black);
+                    emitter1.Render(g);
+                emitter2.Render(g);
+                emitter3.Render(g);
+                emitter4.Render(g);
+            }
+                picDisplay.Invalidate();
+            
+            
 
         }
 
@@ -73,21 +119,25 @@ namespace kursTech
         private int countOfClicks = 0;
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            foreach (var emitter in emitters)
             {
-                emitter.impactPoints.Add(new CounterPoint
+                if (e.Button == MouseButtons.Left)
                 {
-                    X = e.X,
-                    Y = e.Y,
+                    emitter.impactPoints.Add(new CounterPoint
+                    {
+                        X = e.X,
+                        Y = e.Y,
+                    }
+                );
+                    countOfClicks++;
                 }
-            );
-                countOfClicks++;
+                else if (e.Button == MouseButtons.Right)
+                {
+                    emitter.impactPoints.RemoveAt(countOfClicks - 1);
+                    countOfClicks--;
+                }
             }
-            else if (e.Button == MouseButtons.Right)
-            {
-                emitter.impactPoints.RemoveAt(countOfClicks-1);
-                countOfClicks--;
-            }
+              
             
 
         }
