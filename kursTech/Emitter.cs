@@ -12,6 +12,7 @@ namespace kursTech
     public class Emitter
     {
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
+        public List<IImpactPoint2> impactPoints2 = new List<IImpactPoint2>();
 
         public int countOfClicks = 0;
         public int X;

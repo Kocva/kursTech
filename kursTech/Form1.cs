@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static kursTech.IImpactPoint;
+using static kursTech.IImpactPoint2;
 using static kursTech.Emitter;
 
 namespace kursTech
@@ -22,10 +23,12 @@ namespace kursTech
         Emitter emitter2;
         Emitter emitter3;
         Emitter emitter4;
-        
+        AntiPoint point2;
+        AntiPoint point3;
 
-        
-        
+
+
+
 
         public Form1()
         {
@@ -90,7 +93,7 @@ namespace kursTech
                 Y = 150,
             };
 
-            emitter.impactPoints.Add(point2);
+            emitter1.impactPoints2.Add(point2);
 
             point3 = new AntiPoint
             {
@@ -98,7 +101,7 @@ namespace kursTech
                 Y = 240,
             };
 
-            emitter.impactPoints.Add(point3);
+            emitter1.impactPoints2.Add(point3);
             emitters.Add(emitter1);
             emitters.Add(emitter2);
             emitters.Add(emitter3);
