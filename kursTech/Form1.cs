@@ -22,7 +22,7 @@ namespace kursTech
         Emitter emitter2;
         Emitter emitter3;
         Emitter emitter4;
-        AntiPoint antiPoint
+        
 
         
         
