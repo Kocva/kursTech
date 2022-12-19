@@ -23,9 +23,7 @@ namespace kursTech
         Emitter emitter2;
         Emitter emitter3;
         Emitter emitter4;
-        //AntiPoint point2;
-        //AntiPoint point3;
-
+        
 
 
 
@@ -87,25 +85,6 @@ namespace kursTech
                 Y = 500
 
             };
-            //point2 = new AntiPoint
-            //{
-            //    X = 570,
-            //    Y = 170,
-            //};
-            
-               
-
-            //point3 = new AntiPoint
-            //{
-            //    X =400,
-            //    Y =400,
-            //};
-
-            
-
-            
-           // emitter1.impactPoints2.Add(point2);
-            //emitter3.impactPoints2.Add(point3);
             
             emitters.Add(emitter1);
             emitters.Add(emitter2);
