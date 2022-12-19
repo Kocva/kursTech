@@ -84,6 +84,10 @@ namespace kursTech
                     {
                         point.ImpactParticle(particle);
                     }
+                    foreach (var point in impactPoints2)
+                    {
+                        point.ImpactParticle(particle);
+                    }
 
 
 
@@ -114,6 +118,11 @@ namespace kursTech
                 particle.Draw(g);
             }
             foreach (var point in impactPoints)
+            {
+
+                point.Render(g);
+            }
+            foreach (var point in impactPoints2)
             {
 
                 point.Render(g);

@@ -23,8 +23,8 @@ namespace kursTech
         Emitter emitter2;
         Emitter emitter3;
         Emitter emitter4;
-        AntiPoint point2;
-        AntiPoint point3;
+        //AntiPoint point2;
+        //AntiPoint point3;
 
 
 
@@ -87,26 +87,43 @@ namespace kursTech
                 Y = 500
 
             };
-            point2 = new AntiPoint
-            {
-                X = 450,
-                Y = 150,
-            };
+            //point2 = new AntiPoint
+            //{
+            //    X = 570,
+            //    Y = 170,
+            //};
+            
+               
 
-            emitter1.impactPoints2.Add(point2);
+            //point3 = new AntiPoint
+            //{
+            //    X =400,
+            //    Y =400,
+            //};
 
-            point3 = new AntiPoint
-            {
-                X = 260,
-                Y = 240,
-            };
+            
 
-            emitter1.impactPoints2.Add(point3);
+            
+           // emitter1.impactPoints2.Add(point2);
+            //emitter3.impactPoints2.Add(point3);
+            
             emitters.Add(emitter1);
             emitters.Add(emitter2);
             emitters.Add(emitter3);
             emitters.Add(emitter4);
-
+            foreach (var emitter in emitters)
+            {
+                emitter.impactPoints2.Add(new AntiPoint
+                {
+                    X = 570,
+                    Y = 170,
+                });
+                emitter.impactPoints2.Add(new AntiPoint
+                {
+                    X = 400,
+                    Y = 400,
+                });
+            }
         }
 
         
@@ -121,7 +138,7 @@ namespace kursTech
 
                 using (var g = Graphics.FromImage(picDisplay.Image))
                 {
-                    g.Clear(Color.Black);
+                    g.Clear(Color.FromArgb(0,0,0,0));
                     emitter1.Render(g);
                 emitter2.Render(g);
                 emitter3.Render(g);
@@ -154,6 +171,7 @@ namespace kursTech
                     emitter.impactPoints.RemoveAt(emitter.countOfClicks - 1);
                     emitter.countOfClicks-= 1;
                 }
+
             }
               
             
@@ -166,6 +184,33 @@ namespace kursTech
             MousePositionY = e.Y;
 
             
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.SpeedMin = trackBar1.Value;
+                emitter.SpeedMax = trackBar1.Value + 4;
+            }
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.RadiusMin = trackBar2.Value;
+                emitter.RadiusMax = trackBar2.Value + 8;
+            }
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+            foreach (var emitter in emitters)
+            {
+                emitter.Spreading = trackBar3.Value;
+                
+            }
         }
     }
 }
