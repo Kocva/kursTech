@@ -116,7 +116,6 @@ namespace kursTech
 
 
 
-        private int countOfClicks = 0;
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
             foreach (var emitter in emitters)
@@ -129,12 +128,12 @@ namespace kursTech
                         Y = e.Y,
                     }
                 );
-                    countOfClicks++;
+                    emitter.countOfClicks+= 1;
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
-                    emitter.impactPoints.RemoveAt(countOfClicks - 1);
-                    countOfClicks--;
+                    emitter.impactPoints.RemoveAt(emitter.countOfClicks - 1);
+                    emitter.countOfClicks-= 1;
                 }
             }
               

@@ -13,6 +13,7 @@ namespace kursTech
     {
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
+        public int countOfClicks = 0;
         public int X;
         public int Y;
         public int Direction = 0;
