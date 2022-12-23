@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static kursTech.IImpactPoint;
-using static kursTech.IImpactPoint2;
 using static kursTech.Emitter;
 
 namespace kursTech

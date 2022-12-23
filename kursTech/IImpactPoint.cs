@@ -23,7 +23,7 @@ namespace kursTech
         public Color ColorTo = Color.FromArgb(0, Color.Red);
         private int k;
         public int alpha;
-        public void Render(Graphics g)
+        public void RenderCounterPoints(Graphics g)
         {
 
             if (counter < 2540)
@@ -58,6 +58,17 @@ namespace kursTech
         );
         }
 
+        public void RenderAntiPoints(Graphics g)
+        {
+            g.DrawEllipse(
+                    new Pen(Color.Red),
+                    X - radius / 2,
+               Y - radius / 2,
+               radius,
+               radius
+                );
+        }
+
         public class CounterPoint : IImpactPoint
         {
             
@@ -80,6 +91,27 @@ namespace kursTech
 
             
         }
+
+        public class AntiPoint : IImpactPoint
+        {
+            public override void ImpactParticle(Particle particle)
+            {
+                float gX = X - particle.X;
+                float gY = Y - particle.Y;
+                double r = Math.Sqrt(gX * gX + gY * gY);
+
+                if (r + particle.Radius < radius / 2 + particle.Radius * 2)
+                {
+                    float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+                    particle.SpeedX = 0;
+                    particle.SpeedY = 0;
+                    particle.SpeedX -= gX * (radius + 500) / r2;
+                    particle.SpeedY -= gY * (radius + 500) / r2;
+                }
+            }
+        }
+
+
 
     }
 }

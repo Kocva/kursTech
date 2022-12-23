@@ -12,7 +12,7 @@ namespace kursTech
     public class Emitter
     {
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
-        public List<IImpactPoint2> impactPoints2 = new List<IImpactPoint2>();
+        public List<IImpactPoint> impactPoints2 = new List<IImpactPoint>();
 
         public int countOfClicks = 0;
         public int X;
@@ -119,14 +119,14 @@ namespace kursTech
             }
             foreach (var point in impactPoints)
             {
-
-                point.Render(g);
+                point.RenderCounterPoints(g);
             }
             foreach (var point in impactPoints2)
             {
 
-                point.Render(g);
+                point.RenderAntiPoints(g);
             }
+           
         }
 
     }
